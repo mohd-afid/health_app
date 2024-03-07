@@ -2,6 +2,8 @@ import 'package:chat_app/helpers/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../helpers/widgets.dart';
+
 class HomeScreen extends StatelessWidget {
   List<String> symptoms = [
     "Heart Rate",
@@ -19,15 +21,15 @@ class HomeScreen extends StatelessWidget {
   List<String> doctorNames = [
     "Emily Johnson",
     " Michael Patel",
-     "Sarah Chang",
+    "Sarah Chang",
     "David Rodriguez",
   ];
   List<String> doctorSpecialties = [
     "Cardiologist",
     "Pediatrician",
-   "Neurologist"
-    "Dermatologist",
-    "Psychiatrist" ,
+    "Neurologist"
+        "Dermatologist",
+    "Psychiatrist",
   ];
   List<double> doctorRatings = [4.9, 4.8, 4.7, 4.9];
 
@@ -44,6 +46,7 @@ class HomeScreen extends StatelessWidget {
     "doctor3.jpg",
     "doctor4.jpg",
   ];
+
   String getGreeting() {
     var hour = DateTime.now().hour;
     String greeting;
@@ -55,7 +58,6 @@ class HomeScreen extends StatelessWidget {
     } else {
       greeting = 'Good evening';
     }
-
     return greeting;
   }
 
@@ -80,9 +82,14 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    CircleAvatar(
-                      radius: 25,
-                      backgroundImage: AssetImage("assets/user.jpg"),
+                    InkWell(
+                      onTap: () async {
+                        logotcodedialog(context);
+                      },
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage("assets/user.jpg"),
+                      ),
                     ),
                   ],
                 ),
@@ -100,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: primaryColor,
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black12,
                             blurRadius: 6,
@@ -133,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 5),
-                          Text(
+                          const Text(
                             "Make an appointment",
                             style: TextStyle(
                               color: Colors.white54,
@@ -217,8 +224,10 @@ class HomeScreen extends StatelessWidget {
                   itemCount: symptoms.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      width: 200, // Increased width to accommodate the contents
-                      margin: EdgeInsets.symmetric(horizontal: 12,vertical: 10),
+                      width: 200,
+                      // Increased width to accommodate the contents
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                       padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         color: Color(0xFFF4F6FA),
@@ -238,7 +247,8 @@ class HomeScreen extends StatelessWidget {
                             size: 40,
                             color: primaryColor,
                           ),
-                          SizedBox(width: 10), // Added spacing between icon and text
+                          SizedBox(width: 10),
+                          // Added spacing between icon and text
                           Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -313,8 +323,8 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 35,
-                            backgroundImage:
-                            AssetImage("assets/${imgs[index]}"), // Replace with actual image asset
+                            backgroundImage: AssetImage(
+                                "assets/${imgs[index]}"), // Replace with actual image asset
                           ),
                           Text(
                             "Dr. ${doctorNames[index]}",
@@ -355,7 +365,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-
       ),
     );
   }

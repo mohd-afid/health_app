@@ -1,4 +1,3 @@
-
 import 'package:chat_app/helpers/colors.dart';
 import 'package:chat_app/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,10 +25,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: primaryColor,
-          scaffoldBackgroundColor: Colors.white),
-      // home:_isSignedIn ? HomePage() : LoginPage(),
+          primaryColor: primaryColor, scaffoldBackgroundColor: Colors.white),
       home: SplashScreen(),
     );
   }

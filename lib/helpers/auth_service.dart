@@ -1,6 +1,4 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -9,7 +7,7 @@ class AuthService {
     bool isSuccess;
     try {
       await firebaseAuth.signInWithEmailAndPassword(
-              email: email, password: password);
+          email: email, password: password);
       isSuccess = true;
     } on FirebaseAuthException catch (e) {
       isSuccess = false;
@@ -17,7 +15,6 @@ class AuthService {
     }
     return isSuccess;
   }
-
 
 // Sign up with email and password
   Future<bool> signUp(
