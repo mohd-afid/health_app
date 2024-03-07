@@ -23,14 +23,14 @@ class _RegistrPageState extends State<RegistrPage> {
   String email = "";
   String password = "";
   String fullname = "";
+  String? gender;
+
   AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      // ),
+
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(
@@ -38,11 +38,11 @@ class _RegistrPageState extends State<RegistrPage> {
           : SingleChildScrollView(
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 180),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
                 child: Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * .7,
-                  padding: EdgeInsets.all(20),
+                  height: MediaQuery.of(context).size.height * .8,
+                  padding: EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(20),
@@ -92,6 +92,43 @@ class _RegistrPageState extends State<RegistrPage> {
                               return "Name cannot be empty";
                             }
                           },
+                        ),
+                        SizedBox(height: 15),
+                        Container(
+                          height: 56, // Adjust the height as needed
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                border: InputBorder.none, // Remove the bottom border
+                                hintText: 'Gender',
+                                contentPadding: EdgeInsets.zero,
+                                isDense: true,
+                              ),
+                              value: gender,
+                              items: ['Male', 'Female', 'Other']
+                                  .map((gender) => DropdownMenuItem(
+                                child: Text(gender),
+                                value: gender,
+                              ))
+                                  .toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  gender = value;
+                                });
+                              },
+                              validator: (value) {
+                                if (value == null) {
+                                  return 'Please select your gender';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
                         ),
                         SizedBox(height: 15),
                         TextFormField(
